@@ -1,8 +1,12 @@
 from flask import Flask, render_template
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Create a Flask Instance
-
 app = Flask(__name__)
+
 
 # Create a route decorator
 @app.route('/')
