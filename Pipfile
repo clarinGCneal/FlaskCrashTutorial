@@ -12,6 +12,7 @@ mysql-connector-python = "*"
 pymysql = "*"
 cryptography = "*"
 flask-migrate = "*"
+flask-login = "*"
 
 [dev-packages]
 
