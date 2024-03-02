@@ -10,6 +10,7 @@ get_flashed_messages() %}
   ></button>
 </div>
 {% endfor %}
+{% if current_user.is_authenticated %}
 
 <h1>Add Blog Post...</h1>
 <br />
@@ -34,5 +35,13 @@ get_flashed_messages() %}
     {{ form.submit(class="btn btn-secondary") }}
   </form>
 </div>
+  
+{% else %}
+  <h2>Please log in to add a blog post.</h2>
+  <p>
+    Sorry, you must be logged in to add a blog post.
+    <a href="{{ url_for('login') }}">Login</a>
+  </p>
+{% endif %}
 
 {% endblock %}

@@ -122,6 +122,7 @@ def post(id):
     return render_template('post.html', post=post)
 
 @app.route('/post/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
 def edit_post(id):
     post = Posts.query.get_or_404(id)
     form = PostForm()
@@ -143,6 +144,7 @@ def edit_post(id):
 
 # Add Post Page
 @app.route('/add_post', methods=['GET', 'POST'])
+# @login_required
 def add_post():
     form = PostForm()
     if form.validate_on_submit():
