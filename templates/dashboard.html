@@ -13,11 +13,22 @@ get_flashed_messages() %}
 
 <h1>Dashboard</h1>
 <br /><br />
-<p>
-  Welcome to the dashboard. You can add a user, update a user, delete a user, or
-  view the user list.
-</p>
-
-<a href="{{ url_for('logout')}}">Logout</a>
+<div class="card">
+  <div class="card-header">{{ current_user.name }}</div>
+  <div class="card-body">
+    <h5 class="card-title">Welcome!</h5>
+    <p class="card-text">
+      <strong>Name:</strong>{{ current_user.name }}<br />
+      <strong>Username:</strong>{{ current_user.username }}<br />
+      <strong>User ID:</strong>{{ current_user.id }}<br />
+      <strong>Email:</strong>{{ current_user.email }}<br />
+      <strong>Favorite Color:</strong>{{ current_user.favorite_color }}<br />
+      <strong>Date Joined:</strong>{{ current_user.date_added }}<br />
+    </p>
+    <a href="{{ url_for('logout')}}" class="btn btn-secondary btn-sml"
+      >Logout</a
+    >
+  </div>
+</div>
 
 {% endblock %}
