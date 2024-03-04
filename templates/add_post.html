@@ -9,8 +9,7 @@ get_flashed_messages() %}
     aria-label="Close"
   ></button>
 </div>
-{% endfor %}
-{% if current_user.is_authenticated %}
+{% endfor %} {% if current_user.is_authenticated %}
 
 <h1>Add Blog Post...</h1>
 <br />
@@ -18,10 +17,6 @@ get_flashed_messages() %}
   <form method="POST">
     {{ form.hidden_tag() }} {{ form.title.label(class="form-label") }} {{
     form.title(class="form-control") }}
-    <br />
-
-    {{ form.author.label(class="form-label") }} {{
-    form.author(class="form-control") }}
     <br />
 
     {{ form.slug.label(class="form-label") }} {{ form.slug(class="form-control")
@@ -35,13 +30,11 @@ get_flashed_messages() %}
     {{ form.submit(class="btn btn-secondary") }}
   </form>
 </div>
-  
-{% else %}
-  <h2>Please log in to add a blog post.</h2>
-  <p>
-    Sorry, you must be logged in to add a blog post.
-    <a href="{{ url_for('login') }}">Login</a>
-  </p>
-{% endif %}
 
-{% endblock %}
+{% else %}
+<h2>Please log in to add a blog post.</h2>
+<p>
+  Sorry, you must be logged in to add a blog post.
+  <a href="{{ url_for('login') }}">Login</a>
+</p>
+{% endif %} {% endblock %}
