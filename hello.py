@@ -6,7 +6,7 @@ from flask_migrate import Migrate
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date
 from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user, current_user
-from forms.webforms import LoginForm, UserForm, NameForm, PasswordForm, PostForm
+from forms.webforms import LoginForm, UserForm, NameForm, PasswordForm, PostForm, SearchForm
 
 
 # Load environment variables from .env file
@@ -34,6 +34,25 @@ login_manager.login_view = 'login'
 @login_manager.user_loader
 def load_user(user_id):
     return Users.query.get(user_id)
+
+# Pass to navbar
+@app.context_processor
+def base():
+    form = SearchForm()
+    return dict(form=form)
+
+# Create Search Function
+@app.route('/search', methods=['POST'])
+def search():
+    form = SearchForm()
+    posts = Posts.query
+    if form.validate_on_submit():
+        # get the data from the submitted form
+        post.searched = form.searched.data
+        # query the database
+        posts = posts.filter(Posts.content.like('%' + post.searched + '%'))
+        posts = posts.order_by(Posts.title).all()
+        return render_template('search.html', form=form, searched=post.searched, posts=posts)
 
 # Create Login Page
 @app.route('/login', methods=['GET', 'POST'])
