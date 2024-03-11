@@ -7,13 +7,15 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date
 from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user, current_user
 from forms.webforms import LoginForm, UserForm, NameForm, PasswordForm, PostForm, SearchForm
-
+from flask_ckeditor import CKEditor
 
 # Load environment variables from .env file
 load_dotenv()
 
 # Create a Flask Instance
 app = Flask(__name__)
+# Add CKEditor
+ckeditor = CKEditor(app)
 # Add Database
 # Old SQLite Database
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
